@@ -48,16 +48,48 @@ int producto_setDescripcion(Producto* list, char* descripcion){
 	return result;
 }
 
-int producto_setNacionalidad(Producto* list, char* nacionalidad){
+int producto_setNacionalidad(Producto* list, int idNac){
 	int result = OK;
-	if(list!=NULL && nacionalidad!=NULL)
-		strncpy(list->nacionalidad, nacionalidad, sizeof(list->nacionalidad));
-	else result = ERROR;
+	(list!=NULL && idNac>0) ? (list->naciodadlidad.id = idNac) : (result = ERROR);
 	return result;
 }
 
 int producto_setPrecioUnitario(Producto* list, float precioUnitario){
 	int result = OK;
 	(list!=NULL && precioUnitario>0) ? (list->precioUnitario = precioUnitario) : (result = ERROR);
+	return result;
+}
+
+int producto_requestDescripcion(char* descripcion){
+	int result = ERROR;
+	if (utn_getString(descripcion, TEXT_LEN, "\ndescripcion?", "\nERROR-> descripcion?", 3) == 0)
+		result = OK;
+	return result;
+}
+
+int producto_requestIdNacionalidad(int* idNac){
+	int result = ERROR;
+	if (utn_getNumero(idNac, "\nidNac?", "\nERROR-> idNac?", 0, 5, 3) == 0)
+		result = OK;
+	return result;
+}
+
+int producto_requestPrecioUnitario(float* precioUnitario){
+	int result = ERROR;
+	if (utn_getNumeroFlotante(precioUnitario, "\nprecioUnitario?", "\nERROR-> precioUnitario?", 0, 1000000000, 3) == 0)
+		result = OK;
+	return result;
+}
+
+int producto_requestData(char* descripcion, int* idNac, float* precioUnitario){
+	int result = ERROR;
+	if(
+			producto_requestDescripcion(descripcion) == 0 &&
+			producto_requestIdNacionalidad(idNac) == 0 &&
+			producto_requestPrecioUnitario(precioUnitario) == 0
+		)
+	{
+		result = OK;
+	}
 	return result;
 }
