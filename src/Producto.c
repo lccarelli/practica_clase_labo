@@ -9,7 +9,7 @@ Producto* producto_new(void){
     return (Producto*) malloc(sizeof(Producto));
 };
 
-Producto* producto_newParametros(int id,char* descripcion,char* nacionalidad, float precioUnitario){
+Producto* producto_newParametros(int id,char* descripcion,int idNac, float precioUnitario){
 	Producto* producto = producto_new();
 	Producto* result = NULL;
 
@@ -17,7 +17,7 @@ Producto* producto_newParametros(int id,char* descripcion,char* nacionalidad, fl
         if(
         		producto_setId(producto, id) &&
 				producto_setDescripcion(producto, descripcion) &&
-				producto_setNacionalidad(producto, nacionalidad) &&
+				producto_setNacionalidad(producto, idNac) &&
 				producto_setPrecioUnitario(producto, precioUnitario)
 
 		){
@@ -32,6 +32,13 @@ void producto_delete(Producto* this){
     if(this != NULL)
     	return free(this);
 };
+
+int producto_generateId(Producto* list, int len, int index, int* id){
+	int result = OK;
+
+	return result;
+}
+
 
 
 int producto_setId(Producto* list, int id){

@@ -3,6 +3,13 @@
 #ifndef PRODUCTO_H_
 #define PRODUCTO_H_
 #define TEXT_LEN 51
+#define ADD 1
+#define LOW 2
+#define MODIFY 3
+#define LIST 4
+#define LIST_ORDER_PRICE 5
+#define LIST_ORDER_DESC 6
+
 
 struct{
 	int id;
@@ -28,10 +35,14 @@ struct{
 Producto* producto_new(void);
 Producto* producto_newParametros(int id,char* descripcion,char* nacionalidad, float precioUnitario);
 void producto_delete(Producto* this);
+
+int producto_generateId(Producto* list, int len, int index, int* id);
+
 int producto_setId(Producto* list, int id);
 int producto_setDescripcion(Producto* list, char* descripcion);
 int producto_setNacionalidad(Producto* list, char* nacionalidad);
 int producto_setPrecioUnitario(Producto* list, float precioUnitario);
+
 int producto_requestDescripcion(char* descripcion);
 int producto_requestIdNacionalidad(int* idNac);
 int producto_requestPrecioUnitario(float* precioUnitario);
