@@ -1,17 +1,12 @@
-
 #include <stdio.h>
 #include <stdlib.h>
 #include "Producto.h"
+#include "Menu.h"
 
 int main(void) {
 
+	int select;
 	Producto producto[10];
-
-	char descripcion[51];
-	int idNac;
-	float precioUnitario;
-	int id;
-
 
 	do {
 			menu_main(&select);
@@ -20,11 +15,9 @@ int main(void) {
 
 					case ADD:
 
-						if(producto_requestData(descripcion, &idNac, &precioUnitario) == 0)
-						{
-							//en construccion
-							producto[0] = producto_newParametros(id, descripcion, idNac, precioUnitario);
-						}
+						(producto_register(producto, PRODUCTO_CANT) == 0) ?
+								printf("\nAccion realizada con exito.") :
+								printf("\nDebe ingresar un empleado. ");
 						break;
 
 					case LOW:
